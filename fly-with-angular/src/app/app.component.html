@@ -85,7 +85,7 @@
             </div>
           <div class="form-actions">
             {{tripForm.invalid}}
-            <button class="btn submit-btn" type="button" (click)="submit()" >SUBMIT</button>
+            <button class="btn submit-btn" type="button" (click)="submit()" [disabled]="tripForm.invalid">SUBMIT</button>
           </div>
   </form>
 </div>
