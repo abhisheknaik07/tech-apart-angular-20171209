@@ -3,15 +3,15 @@
 <div id='stars3'></div>
 <div class="container">
   <div class="header">
-    <h1 ><title>{{trip.title}}</title></h1>
-    <!-- <button class="btn add-trip-btn">+ Add a Trip</button> -->
+    <h1 ><title>{{title}}</title></h1>   
   </div>
 
-  <div  class="trips-list">
-    <div class="trip">
-      <div class="row" *ngFor="let trip of trips">
+  <button class="btn add-trip-btn" (click)="showOrHide()">+ Add a Trip</button>
+  <div  *ngIf="!toggleState" class="trips-list">
+    <div class="trip" *ngFor="let trip of trips">
+      <div class="row" >
         <div class="col-lg-2 col-md-3 col-sm-4 trip-image-container">
-          <img *ngIf="trip.id == 4" [src]="trip.imgSrc" class="trip-image">
+          <img [src]="trip.imgSrc" class="trip-image">
         </div>
         <div class="col-lg-10 col-md-9 col-sm-8 trip-info">
           <div>
@@ -25,12 +25,67 @@
               {{trip.Description}}
             </div>
             <div class="col-md-4">
-              <button class="btn btn-lg book-btn">{{trip.bookBtn}}</button>
+              <button class="btn btn-lg book-btn" (click)='bookTrip()'>{{trip.bookBtn}}</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  <div  *ngIf="toggleState" class="trips-list" >  
+      <form name="new-trip-form"  [formGroup]="tripForm">
+         <div class="form-group col-md-12">
+            <label class="col-form-label" for="formGroupTripName">Trip name</label>
+            <input type="text" class="form-control" id="formGroupTripName" placeholder="Enter name" formControlName="Name">
+            <small id="TripNameHelpBlock" class="form-text text-muted">
+              It is best to limit the trip name to about 25 to 30 charatcters.
+            </small>
+          </div>
+          {{tripForm.get('Name').errors|json}}
+          <div *ngIf="tripForm.get('Name').invalid">
+            Its invalid
+          </div>
+          <div class="form-group col-md-6">
+          <label class="col-form-label" for="formGroupTripCost">Cost</label>
+          <div class="input-group">
+            <span class="input-group-addon">INR</span>
+            <input type="number" class="form-control" id="formGroupTripCost"  formControlName="Price">
+          </div>
+        </div>        
+        <div class="form-group col-md-12">
+            <label class="col-form-label" for="formGroupDuration">Duration</label>
+            <input type="text" class="form-control" id="formGroupDuration" placeholder="Eg. 12 months" formControlName="Duration">
+          </div>
+          <div *ngIf="tripForm.get('Duration').invalid">
+              Its invalid
+            </div>
+          <div class="form-group col-md-12">
+            <label class="col-form-label" for="formGroupDescription">Description</label>
+            <textarea type="text" class="form-control" id="formGroupDescription" placeholder="Some description goes here..."  formControlName="Description"></textarea>
+          </div>
+          <div *ngIf="tripForm.get('Description').invalid">
+              Its invalid
+            </div>
+          <div class="form-group col-md-12">
+            <label class="col-form-label" for="formGroupTripImage">Trip image</label>
+            <input type="text" class="form-control" id="formGroupTripImage" placeholder="Add a trip image link" formControlName="imgSrc" >
+            <small id="TripNameHelpBlock" class="form-text text-muted">
+              Please add a link to the image
+            </small>
+          </div>
+          <div class="form-group col-md-12">
+              <label class="col-form-label" for="formGroupTripImage">Trip Button text</label>
+              <input type="text" class="form-control" id="formGroupTripImage" placeholder="Add a trip image link" formControlName="bookBtn" >
+              <small id="TripNameHelpBlock" class="form-text text-muted">
+                Please add Button Text
+              </small>
+            </div>
+          <div *ngIf="tripForm.get('imgSrc').invalid">
+              Its invalid
+            </div>
+          <div class="form-actions">
+            {{tripForm.invalid}}
+            <button class="btn submit-btn" type="button" (click)="submit()" >SUBMIT</button>
+          </div>
+  </form>
 </div>
