@@ -3,29 +3,29 @@
 <div id='stars3'></div>
 <div class="container">
   <div class="header">
-    <h1 ><title>{{title}}</title></h1>
+    <h1 ><title>{{trip.title}}</title></h1>
     <!-- <button class="btn add-trip-btn">+ Add a Trip</button> -->
   </div>
 
-  <div class="trips-list">
+  <div  class="trips-list">
     <div class="trip">
-      <div class="row">
+      <div class="row" *ngFor="let trip of trips">
         <div class="col-lg-2 col-md-3 col-sm-4 trip-image-container">
-          <img src="" class="trip-image">
+          <img *ngIf="trip.id == 4" [src]="trip.imgSrc" class="trip-image">
         </div>
         <div class="col-lg-10 col-md-9 col-sm-8 trip-info">
           <div>
-            <div class="trip-name">{{tripName}}</div>
-            <div class="trip-price">{{tripPrice}}</div>
+            <div class="trip-name">{{trip.Name}}</div>
+            <div class="trip-price">{{trip.Price|currency:'INR'}}</div>
           </div>
-          <div class="trip-duration">{{tripDuration}}</div>
+          <div class="trip-duration">{{trip.Duration}}</div>
 
           <div class="row trip-description-container">
             <div class="col-md-8 trip-description">
-              {{tripDescription}}
+              {{trip.Description}}
             </div>
             <div class="col-md-4">
-              <button class="btn btn-lg book-btn">{{bookBtn}}</button>
+              <button class="btn btn-lg book-btn">{{trip.bookBtn}}</button>
             </div>
           </div>
         </div>
