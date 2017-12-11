@@ -22,7 +22,7 @@ export class AppComponent {
   // tripDescription="Race through the Solar System to reach the Red planet. This flight will take 11 Earth Years for each side of the journey.";
   // tripDuration="2 Earth Years";
   // bookBtn="Book Trip";
-   title= 'Fly with Angular',
+   title= 'Fly with Angular';
   trips: TripInterface[] = [{     
       Name:'Super Flights to Mars',
       Price:18200,

@@ -41,7 +41,7 @@
               It is best to limit the trip name to about 25 to 30 charatcters.
             </small>
           </div>
-          {{tripForm.get('Name').errors|json}}
+ 
           <div *ngIf="tripForm.get('Name').invalid">
             Its invalid
           </div>
